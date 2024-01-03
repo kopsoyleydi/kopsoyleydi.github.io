@@ -30,6 +30,14 @@
 	================================================== -->
 	<link rel="icon" type="image/png" href="icon.png">
 
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            // https://dashboard.emailjs.com/admin/account
+            emailjs.init('LS7KlK6qwwAgt6k9x');
+        })();
+    </script>
+
 </head>
 
 <body id="top">
@@ -464,7 +472,7 @@
 	
    <!-- contact
    ================================================== -->
-	<section id="contact">
+	<!--<section id="contact">
 
 		<div class="row section-intro">
    		<div class="col-twelve">
@@ -475,29 +483,52 @@
    			<p class="lead">Just fill out the form.</p>
 
    		</div> 
-   	</div> <!-- /section-intro -->
-
-	<section id="contact">
+   	</div> /section-intro
+-->
+	<!--<section id="contact">
 
 		<div class="row section-intro">
    		<div class="col-twelve">
 
-   			<h5>Contact</h5>
-   			<h1>You can contact me.</h1>
+   			<h1>You can send me a message</h1>
 
-   			<p class="lead">Just fill out the form.</p>
+   			<p class="lead">Your email for feedback to me</p>
 
-			<label>
+			<form id="contact-form">
+				<label>
 				Your email
 			</label>
-			<input type="email" placeholder="your email" id="email-form-to">
+			<input type="email" placeholder="your email" id="email-form-to"><br>
 			<label>
 				Write text
 			</label>
 			<input type="text" placeholder="your text" id="text-from-to">
+			<button type="submit">
+				Submit your message
+			</button>
+			</form>
+			
 
    		</div> 
-   	</div> <!-- /section-intro -->
+
+		   <script type="text/javascript">
+			window.onload = function() {
+				document.getElementById('contact-form').addEventListener('submit', function(event) {
+					event.preventDefault();
+					// generate a five digit number for the contact_number variable
+					const emailfrom = document.getElementById("email-form-to");
+					const message = document.getElementById("text-from-to");
+					// these IDs from the previous steps
+					emailjs.sendForm('contact_service', 'contact_form', this)
+						.then(function() {
+							console.log('SUCCESS!');
+						}, function(error) {
+							console.log('FAILED...', error);
+						});
+				});
+			}
+		</script>
+   	</div >  /section-intro -->
 
    	
 
@@ -590,5 +621,5 @@
    <script src="js/main.js"></script>
 
 </body>
-
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 </html>

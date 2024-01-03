@@ -2349,6 +2349,13 @@ header .logo a {
 	min-height: 20rem;
 	padding: 1.8rem 2rem;
 }
+#contect button[type="sumbit"]{
+	width: 50%;
+	color: rgba(255, 255, 255, 0.7);
+	margin-bottom: 0;
+	border: none;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
 #contact textarea:focus {
 	border-color: #FF0077;
 	color: #FFFFFF;
@@ -2413,6 +2420,7 @@ header .logo a {
 	font-family: "poppins-regular", sans-serif;
 	font-size: 1.5rem;
 	text-align: center;
+	padding-top: 8rem;
 }
 .contact-info .collapse {
 	padding: 0;
