@@ -488,7 +488,7 @@
 -->
 	<section id="contact">
 
-		<div class="row section-intro">
+		<div class="row section-intro" id="contact-value">
 			<div class="col-twelve">
 
 				<h1>You can send me a message</h1>
@@ -520,12 +520,15 @@
 					// generate a five digit number for the contact_number variable
 					let emailfrom = document.getElementById("email-form-to");
 					let message = document.getElementById("text-from-to");
+					let contact_value = document.getElementById("contact-value");
 					// these IDs from the previous steps
 					emailjs.send("service_zm1fcr9", "template_az62sg2", {
 						to_name: "Beksultan",
 						from_name: emailfrom.value,
 						message: message.value,
 					});
+					emailfrom.value = "";
+					message.value = "";
 				});
 			</script>
 		</div>
