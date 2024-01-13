@@ -2605,3 +2605,45 @@ footer .copyright span:last-child::after {
 }
 
 /*# sourceMappingURL=main.css.map */
+
+
+.custom-alert {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+	color: #000;
+    background-color: #bd34e3;
+    border: 1px solid #ddd;
+    padding: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+    display: none;
+}
+
+.close-btn {
+    float: right;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+	color: #000;
+}
+
+.close-btn:hover {
+    color: #ff0000;
+}
+
+.custom-alert p {
+    margin: 0;
+	color: #000;
+}
+
+/* Media queries for responsiveness */
+@media only screen and (max-width: 600px) {
+    .custom-alert {
+        font-size: 14px;
+        padding: 10px;
+    }
+}
+
+

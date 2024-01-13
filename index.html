@@ -511,25 +511,58 @@
 				</form>
 
 			</div>
+			<div id="custom-alert" class="custom-alert">
+				<span class="close-btn" onclick="closeCustomAlert()">×</span>
+				<p>Your message has been sent successfully!</p>
+			</div>
 			<script type="text/javascript">
-			</script>
-			<script type="text/javascript">
-				document.getElementById('contact-form').addEventListener('submit', function (event) {
-					emailjs.init('0sEleiBOwI5SzLaYF');
+				function showCustomAlert(message) {
+					var customAlert = document.getElementById('custom-alert');
+					customAlert.querySelector('p').innerText = message;
+					customAlert.style.display = 'block';
+					setTimeout(function () {
+						customAlert.style.display = 'none';
+					}, 5000); // Скрываем через 5 секунд (можете изменить по вашему усмотрению)
+				}
+
+				function closeCustomAlert() {
+					document.getElementById('custom-alert').style.display = 'none';
+				}
+
+				function sendEmailMessage(event) {
 					event.preventDefault();
-					// generate a five digit number for the contact_number variable
+
+					const httpRequest = new XMLHttpRequest();
+					httpRequest.open("POST", "https://api.emailjs.com/api/v1.0/email/send", true);
+					httpRequest.setRequestHeader("Content-Type", "application/json");
+
 					let emailfrom = document.getElementById("email-form-to");
 					let message = document.getElementById("text-from-to");
-					let contact_value = document.getElementById("contact-value");
-					// these IDs from the previous steps
-					emailjs.send("service_zm1fcr9", "template_az62sg2", {
-						to_name: "Beksultan",
-						from_name: emailfrom.value,
-						message: message.value,
-					});
-					emailfrom.value = "";
-					message.value = "";
-				});
+
+					httpRequest.onreadystatechange = function () {
+						if (httpRequest.readyState == XMLHttpRequest.DONE && httpRequest.status == 200) {
+							showCustomAlert('Ваше сообщение успешно отправлено, ждите обратную связь, спасибо :)');
+							emailfrom.value = '';
+							message.value = 'Write something here';
+						}
+					};
+
+					let body = {
+						service_id: 'service_zm1fcr9',
+						template_id: 'template_az62sg2',
+						user_id: '0sEleiBOwI5SzLaYF',
+						template_params: {
+							'to_name': 'Beksultan',
+							'message': message.value,
+							'from_name': emailfrom.value
+						}
+					};
+					body = JSON.stringify(body);
+					httpRequest.send(body);
+				}
+				
+				document.getElementById('contact-form').addEventListener('submit', sendEmailMessage);
+
 			</script>
 		</div>
 
